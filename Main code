@@ -1,0 +1,120 @@
+#include<iostream>
+#include<string.h>
+#include<istream>
+
+/*
+Anthony Glynn
+AEM249 Final encryption decryption program
+Professor Sean Wang
+Green group
+Project group 20
+Class: AEM249-001
+Due date: 4/18/2021
+
+t = text
+k = the key for the encryption
+x= the placeholder
+p = placeholder for choosing encryption or decryption with the functions
+
+hide = function to encrypt
+unhide = function to decrypt 
+
+
+*/
+
+using namespace std;
+void Hide()
+   {
+     char t[100000];
+     char x;
+  int i, k;
+  cin.ignore();
+ 
+  cout <<"Please enter what you would to encrypt: " <<endl;
+ 
+  cin.getline(t, 100000);
+ 
+ 
+  cout <<"Please enter the key you would like to use to encrypt your chosen message: " <<endl;
+  cin >> k;
+
+  for(i = 0; t[i] != '\0'; ++i){
+    x = t[i];
+   
+    if(x >= 'a' && x <= 'z'){
+      x = x + k;
+      
+      if(x > 'z'){
+        x = x - 'z' + 'a' - 1;
+      }
+      
+      t[i] = x;
+    }
+    else if(x >= 'A' && x <= 'Z'){
+      x = x + k;
+      
+      if(x > 'Z'){
+        x = x - 'Z' + 'A' - 1;
+      }
+      
+      t[i] = x;
+    }
+  }
+  
+  cout << "The encrypted version of you message is: " << t <<endl;
+}
+void unhide()
+{
+    char t[100000];
+    char x;
+  int i, k;
+  cin.ignore();
+  cout <<"Please enter what you would like to decrypt: " <<endl;
+  cin.getline(t,100000);
+  cout <<"Please enter the key to decrypt: " <<endl;
+  cin >> k;
+  for(i = 0; t[i] != '\0'; ++i){
+    x = t[i];
+    if(x >= 'a' && x <= 'z'){
+      x = x - k;
+      
+      if(x < 'a'){
+        x = x + 'z' - 'a' + 1;
+      }
+      
+      t[i] = x;
+    }
+    else if(x >= 'A' && x <= 'Z'){
+      x = x - k;
+      
+      if(x < 'A'){
+        x = x + 'Z' - 'A' + 1;
+      }
+      
+      t[i] = x;
+    }
+  }
+  
+  cout << "The decrypted message is: " <<t << endl;
+  
+}
+ 
+int main()
+{
+  int p;
+  cout << "Please enter your choice to encrypt or decrypt your message with 1 or 2" <<endl;
+  cout << "1:) Encrypt or 2:) Decrypt"<<endl;
+  cin >> p;
+  switch(p)
+  {
+    case 1: Hide();
+            break;
+    case 2: unhide();
+            break;
+    default:cout << "What you entered is not a valid option please try again.";
+            break;
+  }
+  
+  
+  return 0;
+}
