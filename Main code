@@ -30,7 +30,7 @@ void Hide()
   int i, k;
   cin.ignore();
  
-  cout <<"Please enter what you would to encrypt: " <<endl;
+  cout <<"Please enter what you would like to encrypt: " <<endl;
  
   cin.getline(t, 100000);
  
